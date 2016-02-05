@@ -30,8 +30,9 @@ npm install
 npm start
 ```
 
-Please note that this application was designed to be deployed with docker and instrumented (Metrics, ...) by NewRelic. Inside the projects root, you'll find a scipt named **dockerDeploy.sh**. This script will build a docker image, containing the app. Execute the following to start the docker image:
+Please note that this application was designed to be deployed with docker and instrumented (Metrics, ...) by NewRelic. Inside the projects root, you'll find a Dockerfile that describes this setup.
 
 ```
-docker run -it --rm -p 9000:9000 rmeissn/academical:latest
+docker build -t academical ./
+docker run -it --rm -p 9000:9000 academical:latest
 ```
