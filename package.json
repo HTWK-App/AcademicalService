@@ -1,0 +1,21 @@
+{
+  "name": "template_application",
+  "version": "0.0.1",
+  "description": "This is a Microservice template appication, meant to be forked.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ."
+  },
+  "author": "Roy Meissner <roy-meissner@gmx.net>",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "boom": "^3.1.2",
+    "cheerio": "^0.20.0",
+    "good": "^6.4.0",
+    "good-console": "^5.3.0",
+    "hapi": "^13.0.0",
+    "joi": "^7.2.3",
+    "request": "^2.69.0"
+  }
+}
