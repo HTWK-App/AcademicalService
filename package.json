@@ -1,14 +1,19 @@
 {
-  "name": "template_application",
+  "name": "academical_microservice",
   "version": "0.0.1",
-  "description": "This is a Microservice template appication, meant to be forked.",
+  "description": "This is a Microservice responsible for the academical calendar part of the HTWK-App.",
+  "homepage": "https://htwk-app.github.io/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HTWK-App/AcademicalService"
+  },
+  "bugs": "https://github.com/HTWK-App/AcademicalService/issues",
+  "author": "Roy Meissner (https://rmeissn.github.io/)",
+  "license": "GPL-3.0",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ."
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Roy Meissner <roy-meissner@gmx.net>",
-  "license": "GPL-3.0",
   "dependencies": {
     "boom": "^3.1.2",
     "cheerio": "^0.20.0",

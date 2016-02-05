@@ -1,7 +1,7 @@
 'use strict';
 
 const hapi = require('hapi');
-const extractor = require('./extractor.js');
+const extractor = require('./extractors/extractor.js');
 
 const server = new hapi.Server();
 server.connection({
