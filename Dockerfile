@@ -12,8 +12,9 @@ ADD ./ ./
 # Install NewRelic Agent
 RUN cp ./node_modules/newrelic/newrelic.js ./ && \
     sed -i -e "s/My Application/Academical MicroService/g" newrelic.js && \
-    sed -i -e "s/license key here/123456789/g" newrelic.js && \
-    sed -i -e 's/const hapi/require("newrelic");\nconst hapi/g' server.js
+    sed -i -e "s/license key here/bfd914d5ba7547c9cde63fa98a79a88e7bfa5e7b/g" newrelic.js && \
+    sed -i -e 's/const hapi/require("newrelic");\nconst hapi/g' server.js && \
+    sed -i -e 's/  host: 'localhost',//g' server.js
 
 # Production settings
 EXPOSE 9000
