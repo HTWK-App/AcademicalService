@@ -1,5 +1,6 @@
 # AcademicalService
 
+[![Build Status](https://snap-ci.com/HTWK-App/AcademicalService/branch/master/build_image)](https://snap-ci.com/HTWK-App/AcademicalService/branch/master)
 [![License](https://img.shields.io/badge/License-GPLv3-green.svg)](https://github.com/HTWK-App/AcademicalService/blob/master/LICENSE)
 [![Language](https://img.shields.io/badge/Language-Javascript%20ECMA2015-lightgrey.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Language](https://img.shields.io/badge/Framework-NodeJS%205.5.0-blue.svg)](https://nodejs.org/)
