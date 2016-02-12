@@ -11,9 +11,9 @@ let ws = {},
 module.exports = {
   getCalender: function(semester) {
     switch (semester) {
-      case "ss":
+      case 'ss':
         return ss;
-      case "ws":
+      case 'ws':
         return ws;
       default:
         return null;
@@ -25,7 +25,7 @@ module.exports = {
 
     request('https://www.htwk-leipzig.de/de/studierende/aktuelles-kalender/akademischer-kalender/sommersemester/', (error, response, body) => {
       if (!error && response.statusCode === 200) {
-        extractInfo(body, "ss");
+        extractInfo(body, 'ss');
       } else {
         server.log('info', error);
         failed();
@@ -34,7 +34,7 @@ module.exports = {
 
     request('https://www.htwk-leipzig.de/de/studierende/aktuelles-kalender/akademischer-kalender/wintersemester/', (error, response, body) => {
       if (!error && response.statusCode === 200) {
-        extractInfo(body, "ws");
+        extractInfo(body, 'ws');
       } else {
         server.log('info', error);
         failed();
@@ -53,8 +53,8 @@ function extractInfo(data, toSave) {
     let checkback = extractCheckback($);
     let importantDates = extractImportantDates($);
     let applicationDates = extractApplicationDates($);
-    let saveTo = "";
-    saveTo = toSave === "ws" ? ws : ss;
+    let saveTo = '';
+    saveTo = toSave === 'ws' ? ws : ss;
     Object.assign(saveTo, semester, outage, checkback, importantDates, applicationDates);
   } catch (e) {
     server.log('error', e);
@@ -64,11 +64,11 @@ function extractInfo(data, toSave) {
 
 function extractSemester($) {
   let sem = $('#content').children().eq(1);
-  let last = "";
+  let last = '';
   let value = sem.find('tr').toArray().map((tr) => {
     let prefix = $(tr).children().first().text();
-    last = prefix !== "" ? prefix : last;
-    return last + " " + $(tr).children().last().text();
+    last = prefix !== '' ? prefix : last;
+    return last + ' ' + $(tr).children().last().text();
   });
   let key = sem.find('h2').text();
   let result = {};
@@ -78,15 +78,15 @@ function extractSemester($) {
 
 function extractOutage($) {
   let sem = $('#content').children().eq(2);
-  let last = "";
+  let last = '';
   let value = sem.find('tr').toArray().map((tr) => {
     let prefix = $(tr).children().last().text();
     let suffix = $(tr).children().first().text();
-    last = prefix !== "" ? prefix : last;
-    if (suffix === "")
+    last = prefix !== '' ? prefix : last;
+    if (suffix === '')
       return;
     else
-      return last + ": " + suffix;
+      return last + ': ' + suffix;
   });
   value = value.filter((a) => a !== undefined);
   let key = sem.find('h3').text();
@@ -102,13 +102,13 @@ function extractCheckback($) {
   let indexNext = $('#content').children().index(h3Next.parent());
   let key = h3.text();
   let values = [];
-  for (var i = index + 1; i < indexNext; i++) {
+  for (let i = index + 1; i < indexNext; i++) {
     values = values.concat($('#content').children().eq(i).find('tr').toArray());
   }
   values = values.map((tr) => {
     let prefix = $(tr).children().last().text();
     let suffix = $(tr).children().first().text();
-    return prefix + ": " + suffix;
+    return prefix + ': ' + suffix;
   });
   let result = {};
   result[key] = values;
@@ -122,14 +122,14 @@ function extractApplicationDates($) {
   let indexNext = $('#content').children().length - 1;
   let key = h3.text();
   let values = [];
-  for (var i = index + 1; i < indexNext; i++) {
+  for (let i = index + 1; i < indexNext; i++) {
     values = values.concat($('#content').children().eq(i).find('tr').toArray());
   }
   values = values.map((tr) => {
     //hack to replace <br> with space
-    let prefix = cheerio.load('<div>' + $(tr).children().last().html().replace('<br>', " ") + '</div>')('div').text();
+    let prefix = cheerio.load('<div>' + $(tr).children().last().html().replace('<br>', ' ') + '</div>')('div').text();
     let suffix = $(tr).children().first().text();
-    return prefix + ": " + suffix;
+    return prefix + ': ' + suffix;
   });
   let result = {};
   result[key] = values;
@@ -144,13 +144,13 @@ function extractImportantDates($) {
   let indexNext = $('#content').children().index(h3Next.parent());
   let key = h3.text();
   let values = [];
-  for (var i = index + 1; i < indexNext; i++) {
+  for (let i = index + 1; i < indexNext; i++) {
     values = values.concat($('#content').children().eq(i).find('tr').toArray());
   }
   values = values.map((tr) => {
     let prefix = $(tr).children().last().text();
     let suffix = $(tr).children().first().text();
-    return prefix + ": " + suffix;
+    return prefix + ': ' + suffix;
   });
   let result = {};
   result[key] = values;

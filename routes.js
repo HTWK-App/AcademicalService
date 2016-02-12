@@ -11,8 +11,10 @@ server.route({
   config: {
     validate: {
       params: {
-        semester: Joi.any().valid('ws', 'ss')
+        semester: Joi.string().valid('ws', 'ss')
       }
-    }
+    },
+    tags: ['api'],
+    description: 'Get the academical calender for the specified semester'
   }
 });

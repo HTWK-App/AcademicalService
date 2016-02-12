@@ -4,7 +4,7 @@
 [![Language](https://img.shields.io/badge/Language-Javascript%20ECMA2015-lightgrey.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Language](https://img.shields.io/badge/Framework-NodeJS%205.5.0-blue.svg)](https://nodejs.org/)
 [![Framework](https://img.shields.io/badge/Webserver-Hapi%2013.0.0-blue.svg)](http://hapijs.com/)
-[![Lines of Code](https://img.shields.io/badge/loc--lightgrey.svg)]()
+[![Lines of Code](https://img.shields.io/badge/loc-290-lightgrey.svg)]()
 
 This microservice scrapes the [academical calendar](https://www.htwk-leipzig.de/de/studierende/aktuelles-kalender/akademischer-kalender/sommersemester/) of the [University of Applied Sciences Leipzig](https://www.htwk-leipzig.de/en) and provisions it through a REST-JSON API.
 
@@ -17,6 +17,8 @@ Once your Server is running all you need to do is open your browser pointing to 
 ``` http://localhost:9000/academical/{ws|ss} ```
 
 in a Webbrowser.
+
+To play with the REST API, point your browser at [http://localhost:9000/documentation](http://localhost:9000/documentation).
 
 ### Compilation/Running the Server  ###
 

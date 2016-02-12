@@ -11,18 +11,29 @@ server.connection({
 
 module.exports = server;
 
-let plugins = {
-  register: require('good'),
-  options: {
-    reporters: [{
-      reporter: require('good-console'),
-      events: {
-        response: '*',
-        log: '*'
+const plugins = [
+  require('inert'),
+  require('vision'), {
+    register: require('good'),
+    options: {
+      reporters: [{
+        reporter: require('good-console'),
+        events: {
+          response: '*',
+          log: '*'
+        }
+      }]
+    }
+  }, {
+    register: require('hapi-swagger'),
+    options: {
+      info: {
+        title: 'Academical REST API',
+        version: '1.0'
       }
-    }]
+    }
   }
-};
+];
 
 
 server.register(plugins, (err) => {
@@ -30,9 +41,8 @@ server.register(plugins, (err) => {
     console.error(err);
     global.process.exit();
   } else {
-    server.start(function() {
+    server.start(() => {
       server.log('info', 'Server started at ' + server.info.uri);
-      //global.server = server;
       require('./routes');
     });
     extractor.fillCalender();

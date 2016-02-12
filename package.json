@@ -12,7 +12,17 @@
   "license": "GPL-3.0",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -R ./node_modules/ ./coverage/",
+    "lint": "eslint -c .eslintrc ./**/*.js",
+    "pretest": "npm run lint",
+    "test": "npm run test:unit && npm run test:integration",
+    "posttest": "npm run coverage",
+    "test:unit": "mocha -C ./tests/unit_*.js",
+    "test:integration": "mocha -C ./tests/integration_*.js",
+    "coverage": "istanbul cover _mocha --include-all-sources ./tests/*.js",
+    "countLOC": "sloc -f cli-table -k total,source,comment,empty -e node_modules\\|coverage ./",
+    "countLOC:details": "sloc -f cli-table -d -e node_modules\\|coverage ./",
+    "start:watch": "nodemon"
   },
   "dependencies": {
     "boom": "3.1.x",
@@ -20,10 +30,21 @@
     "good": "6.4.x",
     "good-console": "5.3.x",
     "hapi": "13.0.x",
+    "hapi-swagger": "4.2.x",
+    "inert": "3.2.x",
     "joi": "7.2.x",
-    "request": "2.69.x"
+    "request": "2.69.x",
+    "vision": "4.0.x"
   },
   "engines": {
     "node": "5.5.x"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^1.10.3",
+    "istanbul": "^0.4.2",
+    "mocha": "^2.4.5",
+    "nodemon": "^1.8.1",
+    "sloc": "^0.1.10"
   }
 }
