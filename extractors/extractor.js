@@ -21,45 +21,65 @@ module.exports = {
   },
 
   fillCalender: function() {
-    retry = false;
+    const request1 = new Promise(function(resolve, reject) {
+      request('https://www.htwk-leipzig.de/de/studierende/aktuelles-kalender/akademischer-kalender/sommersemester/', (error, response, body) => {
+        if (!error && response.statusCode === 200) {
+          try {
+            extractInfo(body, 'ss');
+            resolve();
+          } catch (error) {
+            reject(error);
+          }
+        } else {
+          reject(error);
+        }
+      });
 
-    request('https://www.htwk-leipzig.de/de/studierende/aktuelles-kalender/akademischer-kalender/sommersemester/', (error, response, body) => {
-      if (!error && response.statusCode === 200) {
-        extractInfo(body, 'ss');
-      } else {
-        server.log('info', error);
-        failed();
-      }
+      console.log('first request');
     });
 
-    request('https://www.htwk-leipzig.de/de/studierende/aktuelles-kalender/akademischer-kalender/wintersemester/', (error, response, body) => {
-      if (!error && response.statusCode === 200) {
-        extractInfo(body, 'ws');
-      } else {
-        server.log('info', error);
-        failed();
-      }
+    const request2 = new Promise(function(resolve, reject) {
+      request('https://www.htwk-leipzig.de/de/studierende/aktuelles-kalender/akademischer-kalender/wintersemester/', (error, response, body) => {
+        if (!error && response.statusCode === 200) {
+          try {
+            extractInfo(body, 'ws');
+            resolve();
+          } catch (error) {
+            reject(error);
+          }
+        } else {
+          reject(error);
+        }
+      });
+
+      console.log('second request');
     });
-    //onece per day
-    setTimeout(module.exports.fillCalender, 86400000);
+
+    console.log('info','fillCalendar() called');
+
+    Promise.all([request1, request2])
+      .then(() => { //resolved
+        console.log('info', 'Success on extracting data - retry much later');
+        setTimeout(module.exports.fillCalender, 86400000);
+      })
+      .catch((response) => { //rejected
+        console.log('info', response);
+        console.log('info', 'Retry to extract data in 1 minute');
+        setTimeout(module.exports.fillCalender, 60000);
+      });
   }
 };
 
 function extractInfo(data, toSave) {
-  try {
-    let $ = cheerio.load(data);
-    let semester = extractSemester($);
-    let outage = extractOutage($);
-    let checkback = extractCheckback($);
-    let importantDates = extractImportantDates($);
-    let applicationDates = extractApplicationDates($);
-    let saveTo = '';
-    saveTo = toSave === 'ws' ? ws : ss;
-    Object.assign(saveTo, semester, outage, checkback, importantDates, applicationDates);
-  } catch (e) {
-    server.log('error', e);
-    failed();
-  }
+  let $ = cheerio.load(data);
+  let semester = extractSemester($);
+  let outage = extractOutage($);
+  let checkback = extractCheckback($);
+  let importantDates = extractImportantDates($);
+  let applicationDates = extractApplicationDates($);
+  let saveTo = '';
+  saveTo = toSave === 'ws' ? ws : ss;
+  Object.assign(saveTo, semester, outage, checkback, importantDates, applicationDates);
 }
 
 function extractSemester($) {
@@ -155,12 +175,4 @@ function extractImportantDates($) {
   let result = {};
   result[key] = values;
   return result;
-}
-
-function failed() {
-  if (retry !== true) {
-    server.log('info','Retry to extract data in 1 minute');
-    setTimeout(module.exports.fillCalender, 60000);
-    retry = true;
-  }
 }
