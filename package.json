@@ -17,8 +17,8 @@
     "pretest": "npm run lint",
     "test": "npm run test:unit && npm run test:integration",
     "posttest": "npm run coverage",
-    "test:unit": "mocha -C ./tests/unit_*.js",
-    "test:integration": "mocha -C ./tests/integration_*.js",
+    "test:unit": "mocha -C ./tests/unit*.js",
+    "test:integration": "mocha -C ./tests/integration*.js",
     "coverage": "istanbul cover _mocha --include-all-sources ./tests/*.js",
     "countLOC": "sloc -f cli-table -k total,source,comment,empty -e node_modules\\|coverage ./",
     "countLOC:details": "sloc -f cli-table -d -e node_modules\\|coverage ./",
@@ -42,6 +42,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "eslint": "^1.10.3",
+    "eslint-plugin-promise": "^1.0.8",
     "istanbul": "^0.4.2",
     "mocha": "^2.4.5",
     "nodemon": "^1.8.1",

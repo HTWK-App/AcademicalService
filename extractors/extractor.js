@@ -2,7 +2,6 @@
 
 const cheerio = require('cheerio');
 const request = require('request');
-const server = require('../server');
 
 let ws = {},
   ss = {},
