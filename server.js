@@ -16,13 +16,22 @@ const plugins = [
   require('vision'), {
     register: require('good'),
     options: {
-      reporters: [{
-        reporter: require('good-console'),
-        events: {
-          response: '*',
-          log: '*'
-        }
-      }]
+      ops: {
+        interval: 1000
+      },
+      reporters: {
+        console: [{
+          module: 'good-squeeze',
+          name: 'Squeeze',
+          args: [{
+            log: '*',
+            response: '*',
+            request: '*'
+          }]
+        }, {
+          module: 'good-console'
+        }, 'stdout']
+      }
     }
   }, {
     register: require('hapi-swagger'),

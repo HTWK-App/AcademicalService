@@ -25,26 +25,27 @@
     "start:watch": "nodemon"
   },
   "dependencies": {
-    "boom": "3.1.x",
+    "boom": "4.2.x",
     "cheerio": "0.22.x",
-    "good": "6.4.x",
-    "good-console": "5.3.x",
-    "hapi": "13.0.x",
-    "hapi-swagger": "4.2.x",
-    "inert": "3.2.x",
-    "joi": "7.2.x",
+    "good": "7.1.x",
+    "good-console": "6.3.x",
+    "good-squeeze": "^5.0.1",
+    "hapi": "16.0.x",
+    "hapi-swagger": "7.4.x",
+    "inert": "4.0.x",
+    "joi": "10.0.x",
     "request": "2.79.x",
-    "vision": "4.0.x"
+    "vision": "4.1.x"
   },
   "engines": {
     "node": "6.x.x"
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "eslint": "^1.10.3",
-    "eslint-plugin-promise": "^1.0.8",
+    "eslint": "^3.11.1",
+    "eslint-plugin-promise": "^3.4.0",
     "istanbul": "^0.4.5",
-    "mocha": "^2.5.3",
+    "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
     "sloc": "^0.1.11"
   }

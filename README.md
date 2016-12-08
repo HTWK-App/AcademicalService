@@ -3,9 +3,9 @@
 [![Build Status](https://snap-ci.com/HTWK-App/AcademicalService/branch/master/build_image)](https://snap-ci.com/HTWK-App/AcademicalService/branch/master)
 [![License](https://img.shields.io/badge/License-GPLv3-green.svg)](https://github.com/HTWK-App/AcademicalService/blob/master/LICENSE)
 [![Language](https://img.shields.io/badge/Language-Javascript%20ECMA2015-lightgrey.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![Language](https://img.shields.io/badge/Framework-NodeJS%205.5.0-blue.svg)](https://nodejs.org/)
-[![Framework](https://img.shields.io/badge/Webserver-Hapi%2013.0.0-blue.svg)](http://hapijs.com/)
-[![Lines of Code](https://img.shields.io/badge/loc-290-lightgrey.svg)]()
+[![Language](https://img.shields.io/badge/Framework-NodeJS%206.9-blue.svg)](https://nodejs.org/)
+[![Framework](https://img.shields.io/badge/Webserver-Hapi%2016-blue.svg)](http://hapijs.com/)
+[![Lines of Code](https://img.shields.io/badge/loc-338-lightgrey.svg)]()
 
 This microservice scrapes the [academical calendar](https://www.htwk-leipzig.de/de/studierende/aktuelles-kalender/akademischer-kalender/sommersemester/) of the [University of Applied Sciences Leipzig](https://www.htwk-leipzig.de/en) and provisions it through a REST-JSON API.
 
